@@ -1,0 +1,16 @@
+{% extends parent_template|default:"thoughts/base_thoughts.html" %}
+{% load category_list %}
+
+{% block content %}
+    <div class="row h-50">
+        <div class="col-sm12 my-auto mx-auto px-5">
+        {{ object.thought|safe }}
+            <div class="row">
+                <div class="col-sm12 mx-auto mb-5">
+                    {% if object.author %}<em>{{ object.author|safe }}</em>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% category_list all_categories border_position='top' %}
+{% endblock %}

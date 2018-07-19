@@ -1,0 +1,11 @@
+body {
+    display: table;
+    position: absolute;
+    height: 80%;
+    width: 100%;
+  }
+  
+  .body {
+     display: table-cell;
+     vertical-align: middle;
+  }

@@ -1,0 +1,8 @@
+{% load cache %}
+{% cache 500 list %}
+<div class="row border-text-info border-{{ border_position }}">
+    <div class="col-sm-12 text-center my-3">
+        {% for cat in items %}<a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>{% if not forloop.last %}&nbsp;<span style="color:darkgray">&bull;</span>&nbsp;{% endif %}{% endfor %}
+    </div>
+</div>
+{% endcache %}
