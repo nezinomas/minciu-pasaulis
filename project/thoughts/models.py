@@ -59,7 +59,7 @@ class Thoughts(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return f'{self.author.split(" ")[0]}: {self.thought[:50]}'
+        return '{}: {}'.format(self.author.split(" ")[0], self.thought[:50])
 
     def save(self, *args, **kwargs):
         slug = slugify(self.thought)
