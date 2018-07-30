@@ -18,8 +18,11 @@ class HomeView(DetailView):
         max_id = Thoughts.objects.all().aggregate(max_id=Max("id"))['max_id']
         if not max_id:
             return
+
         pk = random.randint(1, max_id)
-        return Thoughts.objects.filter(pk=pk, enabled=True)[:1]
+        obj = Thoughts.objects.filter(pk=pk, enabled=True)[:1]
+        if obj:
+            return obj[0]
 
 
 class CategoryView(ListView):
