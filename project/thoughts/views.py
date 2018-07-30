@@ -25,18 +25,7 @@ class HomeView(DetailView):
     model = Thoughts
 
     def get_object(self, queryset=None):
-        # max_id = Thoughts.objects.all().aggregate(max_id=Max("id"))['max_id']
-        # if not max_id:
-        #     return
-
-        # pk = random.randint(1, max_id)
-        # obj = Thoughts.objects.filter(pk=pk, enabled=True)[:1]
-        # if obj:
-        #     return obj[0]
-        # return Thoughts.objects.filter(enabled=True).order_by("?").first()
-        cnt = Thoughts.objects.filter(enabled=True).count()
-
-        if not cnt:
+        if not Thoughts.objects.filter(enabled=True).count():
             return
 
         return get_random(Thoughts)
