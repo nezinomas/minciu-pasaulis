@@ -4,8 +4,24 @@ body {
     height: 80%;
     width: 100%;
   }
-  
+
   .body {
      display: table-cell;
      vertical-align: middle;
   }
+
+.index-font {
+  font-family: 'Lora', serif;
+  color: #222222;
+  font-weight: 400;
+}
+
+.index-font-big {
+  font-size: 32px;
+  color: #ea4c88;
+}
+
+.index-font-small {
+  font-size: 14px;
+  color: #222222;
+}
