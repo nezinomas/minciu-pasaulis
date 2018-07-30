@@ -19,7 +19,7 @@ class HomeView(DetailView):
         if not max_id:
             return
         pk = random.randint(1, max_id)
-        return Thoughts.objects.get(pk=pk)
+        return Thoughts.objects.filter(pk=pk, enabled=True)[:1]
 
 
 class CategoryView(ListView):
