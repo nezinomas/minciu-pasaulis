@@ -4,6 +4,7 @@ from django.urls import reverse, resolve
 from .. import views
 from .. import factories
 
+
 class HomeTests(TestCase):
     def test_home_view(self):
         view = resolve('/')
@@ -36,10 +37,9 @@ class HomeTests(TestCase):
 
     def test_home_view_with_thought(self):
         factories.ThoughtsFactory()
-
         url = reverse('thoughts:home')
         resp = self.client.get(url)
 
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'Author')
         self.assertContains(resp, 'Thought')
+        self.assertContains(resp, 'Author')
