@@ -8,4 +8,4 @@ class HomeTests(TestCase):
         url = reverse('thoughts:home')
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
-        self.assertContains(resp, 'Tuščia')
+        self.assertContains(resp, 'Mintis pakeliui pasiklydo, bandykite paspausti F5.')

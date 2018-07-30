@@ -16,6 +16,8 @@ class HomeView(DetailView):
 
     def get_object(self, queryset=None):
         max_id = Thoughts.objects.all().aggregate(max_id=Max("id"))['max_id']
+        if not max_id:
+            return
         pk = random.randint(1, max_id)
         return Thoughts.objects.get(pk=pk)
 
