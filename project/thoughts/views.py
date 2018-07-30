@@ -54,7 +54,9 @@ class SearchView(ListView):
 
             query_list = query.split()
             results = Thoughts.objects.filter(
-                reduce(or_, (Q(author__icontains=q) for q in query_list)) |
-                reduce(or_, (Q(thought__icontains=q) for q in query_list))
+                Q(enabled=True) & (
+                    reduce(or_, (Q(author__icontains=q) for q in query_list)) | 
+                    reduce(or_, (Q(thought__icontains=q) for q in query_list))
+                )
             )
         return results
