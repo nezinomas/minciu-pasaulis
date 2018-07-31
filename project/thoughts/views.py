@@ -10,7 +10,7 @@ from django.db.models import Q
 from .models import Categories, Thoughts
 
 def get_random(model):
-    max_id = model.objects.all().aggregate(max_id=Max("id"))['max_id']
+    max_id = model.objects.filter(enabled=True).aggregate(max_id=Max("id"))['max_id']
     if not max_id:
         return
 
@@ -20,14 +20,12 @@ def get_random(model):
         if obj:
             return obj
 
+
 class HomeView(DetailView):
     template_name = 'thoughts/index.html'
     model = Thoughts
 
     def get_object(self, queryset=None):
-        if not Thoughts.objects.filter(enabled=True).count():
-            return
-
         return get_random(Thoughts)
 
 
