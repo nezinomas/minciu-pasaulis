@@ -2,22 +2,27 @@
 {% load category_list %}
 
 {% block content %}
-    <div class="row h-50">
-        <div class="col-sm12 my-auto mx-auto px-5 text-center index-font index-font-big">
-        {% with item=object %}
-        {% if item %}
-        {{ item.thought|safe }}
-            <div class="row">
-                <div class="col-sm12 mx-auto mb-5 index-font-small">
-                    {% if item.author %}<em>{{ item.author|safe }}</em>{% endif %}
-                </div>
-            </div>
-        </div
-        {% else %}
-            Mintis pakeliui pasiklydo, bandykite paspausti F5.
-        {% endif %}
-        {% endwith %}
+        <div class="row h-80">
+            <div class="row mx-auto">
+                <div class="col-sm12 px-5 mx-auto my-auto text-center index-font index-font-big">
+                {% with item=object %}
+                {% if item %}
+                {{ item.thought|safe }}
 
-    </div>
-    {% category_list all_categories border_position='top' %}
+                {% if item.author %}
+                    <div class="row">
+                        <div class="col-sm12 mx-auto mb-5 index-font-small">
+                            <em>{{ item.author|safe }}</em>
+                        </div>
+                    </div>
+                {% endif %}
+
+                </div>
+                {% else %}
+                    Mintis pakeliui pasiklydo, bandykite paspausti F5.
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        {% category_list all_categories border_position='top' %}
 {% endblock %}
