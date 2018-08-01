@@ -1,11 +1,11 @@
-import random
 from functools import reduce
 from operator import or_
 
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
-from django.db.models import Max
 from django.db.models import Q
+
+from ..core.utils import random
 
 from .models import Categories, Thoughts
 
@@ -15,9 +15,7 @@ class HomeView(DetailView):
     model = Thoughts
 
     def get_object(self, queryset=None):
-        max_id = Thoughts.objects.all().aggregate(max_id=Max("id"))['max_id']
-        pk = random.randint(1, max_id)
-        return Thoughts.objects.get(pk=pk)
+        return random.get_random(Thoughts)
 
 
 class CategoryView(ListView):
@@ -49,7 +47,9 @@ class SearchView(ListView):
 
             query_list = query.split()
             results = Thoughts.objects.filter(
-                reduce(or_, (Q(author__icontains=q) for q in query_list)) |
-                reduce(or_, (Q(thought__icontains=q) for q in query_list))
+                Q(enabled=True) & (
+                    reduce(or_, (Q(author__icontains=q) for q in query_list)) | 
+                    reduce(or_, (Q(thought__icontains=q) for q in query_list))
+                )
             )
         return results
