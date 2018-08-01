@@ -1,13 +1,8 @@
 body {
     display: table;
     position: absolute;
-    height: 80%;
+    height: 95%;
     width: 100%;
-  }
-
-  .body {
-     display: table-cell;
-     vertical-align: middle;
   }
 
 .index-font {
@@ -24,4 +19,8 @@ body {
 .index-font-small {
   font-size: 14px;
   color: #222222;
+}
+
+.h-80 {
+  height: 80%;
 }

@@ -1,4 +1,4 @@
-from factory import DjangoModelFactory, SubFactory, Sequence, post_generation
+from factory import DjangoModelFactory, SubFactory, Sequence
 
 from . import models
 

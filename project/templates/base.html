@@ -9,7 +9,6 @@
     {% block stylesheet %}{% endblock %}
   </head>
   <body>
-    <div class="body vertical-center">
       <div class="container h-100">
         <nav class="navbar navbar-light bg-light sticky-top">
            {% block top_nav %}&nbsp;{% endblock %}
@@ -18,9 +17,8 @@
               <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Ieškoti" aria-label="Ieškoti" size="35" name="q" value="{{ request.GET.q }}">
               <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit">Ieškoti</button>
             </form>
-        </nav> 
+        </nav>
       {% block content %}{% endblock %}
       </div>
-    </div>
   </body>
 </html>
