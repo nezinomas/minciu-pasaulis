@@ -1,24 +1,13 @@
-import random
 from functools import reduce
 from operator import or_
 
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
-from django.db.models import Max
 from django.db.models import Q
 
+from ..core.utils import random
+
 from .models import Categories, Thoughts
-
-def get_random(model):
-    max_id = model.objects.filter(enabled=True).aggregate(max_id=Max("id"))['max_id']
-    if not max_id:
-        return
-
-    while True:
-        pk = random.randint(1, max_id)
-        obj = model.objects.filter(enabled=True, pk=pk).first()
-        if obj:
-            return obj
 
 
 class HomeView(DetailView):
@@ -26,7 +15,7 @@ class HomeView(DetailView):
     model = Thoughts
 
     def get_object(self, queryset=None):
-        return get_random(Thoughts)
+        return random.get_random(Thoughts)
 
 
 class CategoryView(ListView):
