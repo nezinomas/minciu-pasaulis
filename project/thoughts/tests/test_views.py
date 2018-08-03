@@ -104,3 +104,43 @@ class CategoryViewTest(TestCase):
 
         self.assertEqual(str(resp.context_data["items"][0]), 'Author: a')
         self.assertEqual(str(resp.context_data["items"][1]), 'Author: w')
+
+
+class SearchViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        factories.ThoughtsFactory(thought='Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+
+    def test_search_view(self):
+        view = resolve('/results/')
+        self.assertEqual(view.func.view_class, views.SearchView)
+
+    def test_search_string_too_short(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url, {'q': '1'})
+        self.assertContains(response, 'Tuščia')
+
+    def test_search_string_empty(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url)
+        self.assertContains(response, 'Tuščia')
+
+    def test_search_empty(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url, {'q': 'xxx'})
+        self.assertContains(response, 'Tuščia')
+
+    def test_search_found_letters_lower(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url, {'q': 'lorem'})
+        self.assertEqual(len(response.context[-1]['items']), 1)
+
+    def test_search_found_author(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url, {'q': 'author'})
+        self.assertEqual(len(response.context[-1]['items']), 1)
+
+    def test_search_found_author_and_tought(self):
+        url = reverse('thoughts:search')
+        response = self.client.get(url, {'q': 'author lorem'})
+        self.assertEqual(len(response.context[-1]['items']), 1)
