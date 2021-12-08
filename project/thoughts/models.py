@@ -39,7 +39,7 @@ class Thoughts(models.Model):
         max_length=2000
     )
     date = models.DateField(
-        auto_now=True
+        auto_now_add=True
     )
     enabled = models.BooleanField(
         default=True
