@@ -1,9 +1,6 @@
-body {
-    display: table;
-    position: absolute;
-    height: 95%;
-    width: 100%;
-  }
+a {
+  text-decoration: none;
+}
 
 .index-font {
   font-family: 'Lora', serif;
@@ -22,5 +19,16 @@ body {
 }
 
 .h-80 {
-  height: 80%;
+  display: grid;
+  grid-template-rows: 85vh;
+}
+
+.btn-sm {
+  font-size: 0.8rem;
+  padding: .2rem .3rem;
+}
+
+.page-link {
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
 }

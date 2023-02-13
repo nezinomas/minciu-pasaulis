@@ -1,4 +1,4 @@
-{% extends parent_template|default:"thoughts/base_thoughts.html" %}
+{% extends "base.html" %}
 {% load category_list %}
 
 {% block content %}
@@ -11,8 +11,8 @@
         </div>
     </div>
 {% empty%}
-    <div class="row h-50">
-        <div class="col-sm12 my-auto mx-auto px-5">
+    <div class="row">
+        <div class="col text-center mx-auto py-5 my-5">
             Tuščia
         </div>
     </div>

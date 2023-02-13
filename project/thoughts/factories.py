@@ -1,13 +1,15 @@
-from factory import DjangoModelFactory, SubFactory, Sequence
+from factory import Sequence, SubFactory
+from factory.django import DjangoModelFactory
 
 from . import models
 
 
 class CategoriesFactory(DjangoModelFactory):
+
     class Meta:
         model = models.Categories
 
-    title = Sequence(lambda n: 'Category{}'.format(n))
+    title = Sequence(lambda n: f'Category{n}')
 
 
 class ThoughtsFactory(DjangoModelFactory):

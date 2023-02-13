@@ -8,7 +8,7 @@ app_name = 'thoughts'
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
-    path('category/<slug:category>', views.CategoryView.as_view(), name='category'),
+    path('category/<slug:category>/', views.CategoryView.as_view(), name='category'),
     path('results/', views.SearchView.as_view(), name='search')
 ]
 

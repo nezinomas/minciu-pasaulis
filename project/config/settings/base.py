@@ -1,10 +1,16 @@
 import os
-from ..secrets import get_secret
+
+import environ
+
 
 # ================   PATH CONFIGURATION
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # ..\project_project\project\confi
-project_ROOT = os.path.dirname(BASE_DIR)  # ..\project_project\project
-PROJECT_ROOT = os.path.dirname(project_ROOT)  # ..\project_project
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_ROOT = os.path.dirname(BASE_DIR)
+PROJECT_ROOT = os.path.dirname(SITE_ROOT)
+
+# Take environment variables from .env file
+ENV = environ.Env()
+environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
 
 
 # ================   MEDIA CONFIGURATION
@@ -14,10 +20,7 @@ MEDIA_URL = "/media/"
 
 # ================   STATIC FILE CONFIGURATION
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(project_ROOT, 'static'),
-]
-# STATIC_ROOT = os.path.join(project_ROOT, 'static')
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 
 # ================   DEBUG CONFIGURATION
@@ -26,7 +29,7 @@ TEMPLATE_DEBUG = DEBUG
 
 
 # ================   SECRET CONFIGURATION
-SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = ENV('SECRET_KEY')
 
 
 # ================   project CONFIGURATION
@@ -38,10 +41,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': os.path.join(PROJECT_ROOT, '_config_db.cnf'),
+            'read_default_file': os.path.join(PROJECT_ROOT, '.db'),
         },
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # ================   GENERAL CONFIGURATION
@@ -56,14 +60,14 @@ USE_TZ = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(project_ROOT, 'templates')],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(SITE_ROOT, 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
                 'project.thoughts.context.show_categories',
             ],
         },

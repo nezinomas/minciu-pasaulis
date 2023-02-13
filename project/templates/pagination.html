@@ -9,9 +9,9 @@
               {% endif %}
               {% for i in paginator.page_range %}
                 {% if page_obj.number == i %}
-                  <li class="page-item active"><a class="page-link" href="{{ request.get_full_path|link_name:i }}">{{ i }} <span class="sr-only">(current)</span></a></li>
+                  <li class="page-item active"><a class="page-link" href="{{ request.get_full_path|link_name:i }}"> {{i}} </a></li>
                 {% else %}
-                  <li class="page-item"><a class="page-link" href="{{ request.get_full_path|link_name:i }}">{{ i }}</a></li>
+                  <li class="page-item"><a class="page-link" href="{{ request.get_full_path|link_name:i }}"> {{i}} </a></li>
                 {% endif %}
               {% endfor %}
               {% if page_obj.has_next %}

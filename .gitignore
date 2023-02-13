@@ -1,13 +1,14 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+.env
+.db
 
 # my folders
 media/
 .idea/
-_config_db.cnf
-_config_secrets.json
 project.pyproj*
+*.p
 
 # Distribution / packaging
 .Python
@@ -18,7 +19,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -46,6 +46,7 @@ coverage_reports/
 nosetests.xml
 coverage.xml
 *,cover
+htmlcov/
 
 # Translations
 *.mo
@@ -62,3 +63,4 @@ target/
 .pytest_cache/
 .vscode/launch.json
 .vscode/settings.json
+*.code-workspace
