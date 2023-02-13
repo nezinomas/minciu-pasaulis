@@ -1,0 +1,6 @@
+# my.cnf
+[client]
+database = thoughts
+user = root
+password = demonas341
+default-character-set = utf8
