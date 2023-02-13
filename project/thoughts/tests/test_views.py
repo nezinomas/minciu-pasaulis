@@ -1,8 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
 
-from freezegun import freeze_time
-
+import time_machine
 from .. import views
 from .. import factories
 
@@ -79,10 +78,10 @@ class CategoryViewTest(TestCase):
 
     def test_category_view_ordering_then_category_has_no_childs_different_date(self):
         c = factories.CategoriesFactory(title='C')
-        with freeze_time('2001-1-1'):
+        with time_machine.travel('2001-1-1'):
             factories.ThoughtsFactory(thought='w', category=c)
 
-        with freeze_time('2000-1-1'):
+        with time_machine.travel('2000-1-1'):
             factories.ThoughtsFactory(thought='a', category=c)
 
         url = reverse('thoughts:category', kwargs={'category': 'C'})
@@ -93,10 +92,10 @@ class CategoryViewTest(TestCase):
 
     def test_category_view_ordering_then_category_with_childs_different_date(self):
         c = factories.CategoriesFactory(title='C', has_childs=True)
-        with freeze_time('2001-1-1'):
+        with time_machine.travel('2001-1-1'):
             factories.ThoughtsFactory(thought='w', category=c)
 
-        with freeze_time('2000-1-1'):
+        with time_machine.travel('2000-1-1'):
             factories.ThoughtsFactory(thought='a', category=c)
 
         url = reverse('thoughts:category', kwargs={'category': 'C'})
