@@ -1,11 +1,26 @@
 body {
     display: table;
     position: absolute;
-    height: 80%;
+    height: 95%;
     width: 100%;
   }
-  
-  .body {
-     display: table-cell;
-     vertical-align: middle;
-  }
+
+.index-font {
+  font-family: 'Lora', serif;
+  color: #222222;
+  font-weight: 400;
+}
+
+.index-font-big {
+  font-size: 26px;
+  color: #ea4c88;
+}
+
+.index-font-small {
+  font-size: 14px;
+  color: #222222;
+}
+
+.h-80 {
+  height: 80%;
+}

@@ -3,12 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title>Minčių pasaulis</title>
+      <link rel='stylesheet' id='google-font-lora-css'  href='//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' type='text/css' media='all' />
       <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
       <link rel="stylesheet" href="{% static 'css/app.css' %}">
     {% block stylesheet %}{% endblock %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122651582-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122651582-1');
+</script>
   </head>
   <body>
-    <div class="body vertical-center">
       <div class="container h-100">
         <nav class="navbar navbar-light bg-light sticky-top">
            {% block top_nav %}&nbsp;{% endblock %}
@@ -17,9 +26,8 @@
               <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Ieškoti" aria-label="Ieškoti" size="35" name="q" value="{{ request.GET.q }}">
               <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit">Ieškoti</button>
             </form>
-        </nav> 
+        </nav>
       {% block content %}{% endblock %}
       </div>
-    </div>
   </body>
 </html>

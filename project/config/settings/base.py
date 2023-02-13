@@ -65,7 +65,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'project.thoughts.context.show_categories',
-                # 'project.products.context.show_tags',
             ],
         },
     },
@@ -92,7 +91,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'project.thoughts'
+    'project.thoughts',
+    'project.core'
 ]
 
 
@@ -119,17 +119,3 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# ================   TEMPLATE THUMBNAILS CONFIGURATION
-THUMBNAIL_ALIASES = {
-    '': {
-        'cover': {'size': (100, 100), },
-        'cover_big': {'size': (300, 300), },
-        'drawing': {'size': (900, 400), },
-    },
-}
-
-
-# ================   TEMPLATE THUMBNAILS CONFIGURATION
-TAGGIT_CASE_INSENSITIVE = True

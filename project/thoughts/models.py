@@ -39,7 +39,7 @@ class Thoughts(models.Model):
         max_length=2000
     )
     date = models.DateField(
-        auto_now=True
+        auto_now_add=True
     )
     enabled = models.BooleanField(
         default=True
@@ -59,7 +59,7 @@ class Thoughts(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return f'{self.author.split(" ")[0]}: {self.thought[:50]}'
+        return '{}: {}'.format(self.author.split(" ")[0], self.thought[:50])
 
     def save(self, *args, **kwargs):
         slug = slugify(self.thought)
