@@ -94,13 +94,13 @@ class DeleteViewMixin(LoginRequiredMixin, DeleteMixin, DeleteView):
     pass
 
 
-class DetailViewMixin(LoginRequiredMixin, DetailView):
+class DetailViewMixin(DetailView):
     pass
 
 
-class ListViewMixin(LoginRequiredMixin, ListView):
+class ListViewMixin(ListView):
     pass
 
 
-class TemplateViewMixin(LoginRequiredMixin, TemplateView):
+class TemplateViewMixin(TemplateView):
     pass
