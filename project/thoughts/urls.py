@@ -12,4 +12,6 @@ urlpatterns = [
     path('results/', views.SearchView.as_view(), name='search'),
     path('thought/create/', views.Create.as_view(), name='create'),
     path('thought/<int:pk>/', views.Detail.as_view(), name='detail'),
+    path('thought/update/<int:pk>/', views.Update.as_view(), name='update'),
+    path('thought/delete/<int:pk>/', views.Delete.as_view(), name='delete'),
 ]
