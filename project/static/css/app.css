@@ -32,3 +32,11 @@ a {
   padding-left: 0.85rem;
   padding-right: 0.85rem;
 }
+
+.btn-xs {
+  font-size: .7rem;
+  padding-top: .01rem;
+  padding-bottom: .01rem;
+  margin-top: 0!important;
+  margin-bottom: 0!important;
+}
