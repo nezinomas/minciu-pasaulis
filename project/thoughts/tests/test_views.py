@@ -74,8 +74,8 @@ class CategoryViewTest(TestCase):
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         resp = self.client.get(url)
 
-        self.assertEqual(str(resp.context_data["items"][0]), 'Author: a')
-        self.assertEqual(str(resp.context_data["items"][1]), 'Author: w')
+        self.assertEqual(str(resp.context_data["object_list"][0]), 'Author: a')
+        self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: w')
 
     def test_category_view_ordering_then_category_has_no_childs_different_date(self):
         c = factories.CategoriesFactory(title='C')
@@ -88,8 +88,8 @@ class CategoryViewTest(TestCase):
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         resp = self.client.get(url)
 
-        self.assertEqual(str(resp.context_data["items"][0]), 'Author: w')
-        self.assertEqual(str(resp.context_data["items"][1]), 'Author: a')
+        self.assertEqual(str(resp.context_data["object_list"][0]), 'Author: w')
+        self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: a')
 
     def test_category_view_ordering_then_category_with_childs_different_date(self):
         c = factories.CategoriesFactory(title='C', has_childs=True)
@@ -102,8 +102,8 @@ class CategoryViewTest(TestCase):
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         resp = self.client.get(url)
 
-        self.assertEqual(str(resp.context_data["items"][0]), 'Author: a')
-        self.assertEqual(str(resp.context_data["items"][1]), 'Author: w')
+        self.assertEqual(str(resp.context_data["object_list"][0]), 'Author: a')
+        self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: w')
 
 
 class SearchViewTest(TestCase):
@@ -133,14 +133,15 @@ class SearchViewTest(TestCase):
     def test_search_found_letters_lower(self):
         url = reverse('thoughts:search')
         response = self.client.get(url, {'q': 'lorem'})
-        self.assertEqual(len(response.context[-1]['items']), 1)
+        self.assertEqual(len(response.context[-2]['object_list']), 1)
 
     def test_search_found_author(self):
         url = reverse('thoughts:search')
         response = self.client.get(url, {'q': 'author'})
-        self.assertEqual(len(response.context[-1]['items']), 1)
+        self.assertEqual(len(response.context[-2]['object_list']), 1)
 
     def test_search_found_author_and_tought(self):
         url = reverse('thoughts:search')
         response = self.client.get(url, {'q': 'author lorem'})
-        self.assertEqual(len(response.context[-1]['items']), 1)
+
+        self.assertEqual(len(response.context[-2]['object_list']), 1)

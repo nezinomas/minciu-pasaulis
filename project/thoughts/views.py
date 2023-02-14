@@ -3,22 +3,20 @@ from operator import or_
 
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView
 
 from ..core.mixins.views import DetailViewMixin, CreateViewMixin, UpdateViewMixin, DeleteViewMixin, TemplateViewMixin, ListViewMixin
 from ..core.utils import random
 from .models import Categories, Thoughts
 
 
-class HomeView(DetailView):
-    model = Thoughts
+class HomeView(DetailViewMixin):
     template_name = 'thoughts/index.html'
 
     def get_object(self, queryset=None):
         return random.get_random(Thoughts)
 
 
-class CategoryView(ListView):
+class CategoryView(ListViewMixin):
     model = Thoughts
     template_name = 'thoughts/list.html'
     paginate_by = 50
@@ -32,7 +30,7 @@ class CategoryView(ListView):
         return Thoughts.objects.filter(category_id=cid.pk, enabled=True).order_by(*ordering)
 
 
-class SearchView(ListView):
+class SearchView(ListViewMixin):
     model = Thoughts
     template_name = 'thoughts/list.html'
 
@@ -55,3 +53,15 @@ class SearchView(ListView):
 
 class Detail(DetailViewMixin):
     model = Thoughts
+
+
+class Create(CreateViewMixin):
+    pass
+
+
+class Update(UpdateViewMixin):
+    pass
+
+
+class Delete(DeleteViewMixin):
+    pass
