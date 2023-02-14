@@ -1,7 +1,21 @@
+import factory
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
 from factory import Sequence, SubFactory
 from factory.django import DjangoModelFactory
 
 from . import models
+
+
+@factory.django.mute_signals(post_save)
+class UserFactory(DjangoModelFactory):
+    class Meta:
+        model = AbstractUser
+        django_get_or_create = ('username',)
+
+    username = 'bob'
+    password = make_password('123')
 
 
 class CategoriesFactory(DjangoModelFactory):
