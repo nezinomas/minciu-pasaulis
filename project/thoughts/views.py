@@ -4,8 +4,11 @@ from operator import or_
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from ..core.mixins.views import DetailViewMixin, CreateViewMixin, UpdateViewMixin, DeleteViewMixin, TemplateViewMixin, ListViewMixin
+from ..core.mixins.views import (CreateViewMixin, DeleteViewMixin,
+                                 DetailViewMixin, ListViewMixin,
+                                 TemplateViewMixin, UpdateViewMixin)
 from ..core.utils import random
+from .forms import ThoughtForm
 from .models import Categories, Thoughts
 
 
@@ -56,7 +59,8 @@ class Detail(DetailViewMixin):
 
 
 class Create(CreateViewMixin):
-    pass
+    model = Thoughts
+    form_class = ThoughtForm
 
 
 class Update(UpdateViewMixin):

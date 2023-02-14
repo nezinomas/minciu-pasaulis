@@ -1,8 +1,8 @@
 import re
 
 from django.db import models
+from django.urls import reverse, reverse_lazy
 from django.utils.text import slugify
-from django.urls import reverse
 
 
 class Categories(models.Model):
@@ -59,9 +59,12 @@ class Thoughts(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return '{}: {}'.format(self.author.split(" ")[0], self.thought[:50])
+        return f'{self.author.split(" ")[0]}: {self.thought[:50]}'
 
     def save(self, *args, **kwargs):
         slug = slugify(self.thought)
         self.first_letter = re.sub('[0-9\-]', '', slug)[0]
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy("thoughts:detail", kwargs={"pk": self.pk})
