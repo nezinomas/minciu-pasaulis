@@ -1,7 +1,7 @@
-from .models import Categories
+from .models import Category
 
 
 def show_categories(context):
     return {
-        'all_categories': Categories.objects.all(),
+        'all_categories': Category.objects.all(),
     }

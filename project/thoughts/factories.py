@@ -21,14 +21,14 @@ class UserFactory(DjangoModelFactory):
 class CategoriesFactory(DjangoModelFactory):
 
     class Meta:
-        model = models.Categories
+        model = models.Category
 
     title = Sequence(lambda n: f'Category{n}')
 
 
 class ThoughtsFactory(DjangoModelFactory):
     class Meta:
-        model = models.Thoughts
+        model = models.Thought
 
     author = 'Author'
     thought = 'Thought'

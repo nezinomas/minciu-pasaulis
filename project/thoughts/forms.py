@@ -7,7 +7,7 @@ from . import models
 
 class ThoughtForm(forms.ModelForm):
     class Meta:
-        model = models.Thoughts
+        model = models.Thought
         fields = ['category', 'author', 'thought']
 
     def __init__(self, *args, **kwargs):

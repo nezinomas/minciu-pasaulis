@@ -4,7 +4,7 @@ from django.urls import resolve, reverse
 from ...core.lib.test_utils import clean_content
 from .. import views
 from ..factories import CategoriesFactory, ThoughtsFactory
-from ..models import Thoughts
+from ..models import Thought
 
 pytestmark = pytest.mark.django_db
 
@@ -51,7 +51,7 @@ def test_create_save_with_valid_data(client_logged):
 
     url = reverse('thoughts:create')
     client_logged.post(url, data)
-    actual = Thoughts.objects.first()
+    actual = Thought.objects.first()
 
     assert actual.category.title == c.title
     assert actual.author == 'Author'

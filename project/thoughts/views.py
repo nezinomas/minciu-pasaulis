@@ -9,32 +9,32 @@ from ..core.mixins.views import (CreateViewMixin, DeleteViewMixin,
                                  TemplateViewMixin, UpdateViewMixin)
 from ..core.utils import random
 from .forms import ThoughtForm
-from .models import Categories, Thoughts
+from .models import Category, Thought
 
 
 class HomeView(DetailViewMixin):
     template_name = 'thoughts/index.html'
 
     def get_object(self, queryset=None):
-        return random.get_random(Thoughts)
+        return random.get_random(Thought)
 
 
 class CategoryView(ListViewMixin):
-    model = Thoughts
+    model = Thought
     template_name = 'thoughts/list.html'
     paginate_by = 50
 
     def get_queryset(self):
-        cid = get_object_or_404(Categories, slug=self.kwargs.get('category'))
+        cid = get_object_or_404(Category, slug=self.kwargs.get('category'))
         if cid.has_childs:
             ordering = ('first_letter', '-date')
         else:
             ordering = ('-date', 'first_letter')
-        return Thoughts.objects.filter(category_id=cid.pk, enabled=True).order_by(*ordering)
+        return Thought.objects.filter(category_id=cid.pk, enabled=True).order_by(*ordering)
 
 
 class SearchView(ListViewMixin):
-    model = Thoughts
+    model = Thought
     template_name = 'thoughts/list.html'
 
     def get_queryset(self):
@@ -45,7 +45,7 @@ class SearchView(ListViewMixin):
             self.paginate_by = 50
 
             query_list = query.split()
-            results = Thoughts.objects.filter(
+            results = Thought.objects.filter(
                 Q(enabled=True) & (
                     reduce(or_, (Q(author__icontains=q) for q in query_list)) |
                     reduce(or_, (Q(thought__icontains=q) for q in query_list))
@@ -55,11 +55,11 @@ class SearchView(ListViewMixin):
 
 
 class Detail(DetailViewMixin):
-    model = Thoughts
+    model = Thought
 
 
 class Create(CreateViewMixin):
-    model = Thoughts
+    model = Thought
     form_class = ThoughtForm
 
 
