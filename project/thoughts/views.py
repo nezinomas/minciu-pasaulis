@@ -1,27 +1,26 @@
 from functools import reduce
 from operator import or_
 
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
-from django.db.models import Q
 
+from ..core.mixins.views import DetailViewMixin, CreateViewMixin, UpdateViewMixin, DeleteViewMixin, TemplateViewMixin, ListViewMixin
 from ..core.utils import random
-
 from .models import Categories, Thoughts
 
 
 class HomeView(DetailView):
-    template_name = 'thoughts/index.html'
     model = Thoughts
+    template_name = 'thoughts/index.html'
 
     def get_object(self, queryset=None):
         return random.get_random(Thoughts)
 
 
 class CategoryView(ListView):
-    template_name = 'thoughts/list.html'
     model = Thoughts
-    context_object_name = 'items'
+    template_name = 'thoughts/list.html'
     paginate_by = 50
 
     def get_queryset(self):
@@ -34,9 +33,8 @@ class CategoryView(ListView):
 
 
 class SearchView(ListView):
-    template_name = 'thoughts/list.html'
     model = Thoughts
-    context_object_name = 'items'
+    template_name = 'thoughts/list.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -48,8 +46,12 @@ class SearchView(ListView):
             query_list = query.split()
             results = Thoughts.objects.filter(
                 Q(enabled=True) & (
-                    reduce(or_, (Q(author__icontains=q) for q in query_list)) | 
+                    reduce(or_, (Q(author__icontains=q) for q in query_list)) |
                     reduce(or_, (Q(thought__icontains=q) for q in query_list))
                 )
             )
         return results
+
+
+class Detail(DetailViewMixin):
+    model = Thoughts
