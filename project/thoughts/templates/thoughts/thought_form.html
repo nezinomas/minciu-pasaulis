@@ -1,4 +1,4 @@
-{% load crispy_forms_tags %}
+{% load static %}
 
 <form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{{ url }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
     {% csrf_token %}
@@ -7,16 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        {% include 'core/includes/form_errors.html' %}
-
-        {% for field in form %}
-        {% if not field.is_hidden %}
-        <div class="row">
-            <div class="col-4">{{ field.label_tag }}</div>
-            <div class="col-8">{{ field|as_crispy_field }}</div>
-        </div>
-        {% endif %}
-        {% endfor %}
+        {% include 'core/includes/form_fields.html' %}
     </div>
 
     <div class="modal-footer">
@@ -26,15 +17,4 @@
     </div>
 </form>
 
-<script>
-    $(document).keydown(function (event) {
-        if (event.keyCode == 27) {
-            $('#modal').modal("hide");
-        }
-    });
-
-    $(document).on('submit', '.js-form', function (e) {
-        e.preventDefault();
-    });
-
-</script>
+<script type="text/javascript" src="{% static 'js/form_scripts.js' %}"></script>
