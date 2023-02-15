@@ -30,21 +30,24 @@
       <div class="container mx-auto">
         <nav class="navbar navbar-light bg-light sticky-top px-2">
            {% block top_nav %}&nbsp;{% endblock %}
-           {% if request.user.is_authenticated %}
-           <button class="btn btn-sm btn-success px-3" hx-get="{% url 'thoughts:create' %}" hx-target="#dialog"> Pridėti naują mintį </button>
-           {% endif %}
             <form class="d-flex" method="GET" action="{% url 'thoughts:search' %}">
               <!--{% csrf_token %}-->
               <input class="form-control btn-sm mx-2" type="search" placeholder="Ieškoti" aria-label="Ieškoti" size="35" name="q" value="{{ request.GET.q }}">
               <button class="btn btn-sm btn-secondary" type="submit">Ieškoti</button>
             </form>
         </nav>
+
+      {% if request.user.is_authenticated %}
+      <button class="btn btn-sm btn-success my-2 w-100" hx-get="{% url 'thoughts:create' %}" hx-target="#dialog"> Pridėti naują mintį </button>
+      {% endif %}
       {% block content %}{% endblock %}
       </div>
-  {% if request.user.is_authenticated %}
+
+    {% if request.user.is_authenticated %}
     <div id="modal" class="modal fade">
 			<div id="dialog" class="modal-dialog" hx-target="this" hx-swap="this"></div>
 		</div>
-  {% endif %}
+    {% endif %}
+
   </body>
 </html>
