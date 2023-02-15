@@ -61,6 +61,7 @@ class Detail(DetailViewMixin):
 class Create(CreateViewMixin):
     model = Thought
     form_class = ThoughtForm
+    template_name = 'thoughts/thought_form_create.html'
 
 
 class Update(UpdateViewMixin):

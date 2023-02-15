@@ -1,9 +1,9 @@
 {% load static %}
 
-<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{{ url }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
+<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{{ view.url }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
     {% csrf_token %}
     <div class="modal-header">
-        <h5 class="modal-title">Mintys</h5>
+        <h5 class="modal-title">Pridėti mintį</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
@@ -11,8 +11,8 @@
     </div>
 
     <div class="modal-footer">
-        {% if form_action == "insert" %}<button type="submit" id="_new" class="btn btn-sm btn-primary">Insert</button>{% endif %}
-        {% if form_action == 'update' %}<button type="submit" id="_update" class="btn btn-sm btn-primary">Update</button>{% endif %}
+        <button type="submit" id="_new" class="btn btn-sm btn-primary">Insert</button>
+        <button type="submit" id="_close" class="btn btn-sm btn-primary">Insert and Close</button>
         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
 </form>
