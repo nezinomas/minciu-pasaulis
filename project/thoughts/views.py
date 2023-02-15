@@ -75,4 +75,5 @@ class Update(UpdateViewMixin):
 
 
 class Delete(DeleteViewMixin):
-    pass
+    model = Thought
+    success_url = '/'
