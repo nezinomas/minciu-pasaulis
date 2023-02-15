@@ -3,6 +3,7 @@ from operator import or_
 
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 from ..core.mixins.views import (CreateViewMixin, DeleteViewMixin,
                                  DetailViewMixin, ListViewMixin,
@@ -65,7 +66,12 @@ class Create(CreateViewMixin):
 
 
 class Update(UpdateViewMixin):
-    pass
+    model = Thought
+    form_class = ThoughtForm
+    template_name = 'thoughts/thought_form_update.html'
+
+    def url(self):
+        return reverse_lazy("thoughts:update", kwargs={"pk": self.kwargs["pk"]})
 
 
 class Delete(DeleteViewMixin):
