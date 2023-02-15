@@ -14,9 +14,6 @@ class Category(models.Model):
         max_length=100,
         editable=False,
     )
-    has_childs = models.BooleanField(
-        default=False
-    )
 
     def __str__(self):
         return str(self.title)
