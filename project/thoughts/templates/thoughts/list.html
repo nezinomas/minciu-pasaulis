@@ -4,6 +4,7 @@
 {% block content %}
 
 {% category_list all_categories border_position='bottom' %}
+
 {% for object in object_list %}
 {% include 'thoughts/thought_detail.html' %}
 {% empty%}
@@ -16,7 +17,9 @@
 
 {% include "pagination.html" %}
 {% category_list all_categories border_position='top' %}
-{% endblock %}
+
+{% endblock content %}
+
 
 {% block top_nav %}
 <a href="{% url 'thoughts:home' %}">&#8672; Pradžia</a>
