@@ -11,7 +11,7 @@ pytestmark = pytest.mark.django_db
 def test_detail_func():
     view = resolve('/thought/9/')
 
-    assert views.Detail is view.func.view_class
+    assert views.DetailView is view.func.view_class
 
 
 def test_detail_404(client):

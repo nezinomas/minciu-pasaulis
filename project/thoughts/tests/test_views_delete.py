@@ -12,7 +12,7 @@ pytestmark = pytest.mark.django_db
 def test_delete_func():
     view = resolve('/thought/delete/1/')
 
-    assert views.Delete is view.func.view_class
+    assert views.DeleteView is view.func.view_class
 
 
 def test_delete_302(client):

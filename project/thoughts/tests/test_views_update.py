@@ -12,7 +12,7 @@ pytestmark = pytest.mark.django_db
 def test_update_func():
     view = resolve('/thought/update/1/')
 
-    assert views.Update is view.func.view_class
+    assert views.UpdateView is view.func.view_class
 
 
 def test_update_302(client):

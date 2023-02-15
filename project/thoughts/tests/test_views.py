@@ -49,7 +49,7 @@ class HomeTests(TestCase):
 class CategoryViewTest(TestCase):
     def test_category_view(self):
         view = resolve('/category/some/')
-        self.assertEqual(view.func.view_class, views.CategoryView)
+        self.assertEqual(view.func.view_class, views.ListView)
 
     def test_category_view_when_now_category(self):
         url = reverse('thoughts:category', kwargs={'category': 'xxx'})

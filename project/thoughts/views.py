@@ -20,7 +20,7 @@ class HomeView(DetailViewMixin):
         return random.get_random(Thought)
 
 
-class CategoryView(ListViewMixin):
+class ListView(ListViewMixin):
     model = Thought
     template_name = 'thoughts/list.html'
     paginate_by = 50
@@ -55,17 +55,17 @@ class SearchView(ListViewMixin):
         return results
 
 
-class Detail(DetailViewMixin):
+class DetailView(DetailViewMixin):
     model = Thought
 
 
-class Create(CreateViewMixin):
+class CreateView(CreateViewMixin):
     model = Thought
     form_class = ThoughtForm
     template_name = 'thoughts/thought_form_create.html'
 
 
-class Update(UpdateViewMixin):
+class UpdateView(UpdateViewMixin):
     model = Thought
     form_class = ThoughtForm
     template_name = 'thoughts/thought_form_update.html'
@@ -74,6 +74,6 @@ class Update(UpdateViewMixin):
         return reverse_lazy("thoughts:update", kwargs={"pk": self.kwargs["pk"]})
 
 
-class Delete(DeleteViewMixin):
+class DeleteView(DeleteViewMixin):
     model = Thought
     success_url = '/'

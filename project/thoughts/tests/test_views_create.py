@@ -12,7 +12,7 @@ pytestmark = pytest.mark.django_db
 def test_create_func():
     view = resolve('/thought/create/')
 
-    assert views.Create is view.func.view_class
+    assert views.CreateView is view.func.view_class
 
 
 def test_create_302(client):
