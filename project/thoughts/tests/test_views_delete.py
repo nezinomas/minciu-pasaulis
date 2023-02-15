@@ -3,7 +3,7 @@ from django.urls import resolve, reverse
 
 from ...core.lib.test_utils import clean_content
 from .. import views
-from ..factories import CategoriesFactory, ThoughtsFactory
+from ..factories import CategoryFactory, ThoughtFactory
 from ..models import Thought
 
 pytestmark = pytest.mark.django_db
@@ -16,7 +16,7 @@ def test_delete_func():
 
 
 def test_delete_302(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     response = client.get(url)
 
@@ -24,7 +24,7 @@ def test_delete_302(client):
 
 
 def test_delete_200(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     response = client_logged.get(url)
 
@@ -32,7 +32,7 @@ def test_delete_200(client_logged):
 
 
 def test_delete_form_post_link(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     response = client_logged.get(url)
@@ -42,7 +42,7 @@ def test_delete_form_post_link(client_logged):
 
 
 def test_delete_form_submit_button_data_pk(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     response = client_logged.get(url)
@@ -52,7 +52,7 @@ def test_delete_form_submit_button_data_pk(client_logged):
 
 
 def test_delete_form_text(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     response = client_logged.get(url)
@@ -62,7 +62,7 @@ def test_delete_form_text(client_logged):
 
 
 def test_delete(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:delete', kwargs={'pk': t.pk})
     client_logged.post(url, {})

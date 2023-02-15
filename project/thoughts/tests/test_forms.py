@@ -2,7 +2,7 @@
 import pytest
 
 from ..forms import ThoughtForm
-from ..factories import CategoriesFactory
+from ..factories import CategoryFactory
 pytestmark = pytest.mark.django_db
 
 
@@ -19,7 +19,7 @@ def test_thought_init_fields():
 
 
 def test_thought_valid_data():
-    c = CategoriesFactory()
+    c = CategoryFactory()
 
     form = ThoughtForm(data={
         'author': 'Author',

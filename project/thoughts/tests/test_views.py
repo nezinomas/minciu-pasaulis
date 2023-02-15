@@ -18,7 +18,7 @@ class HomeTests(TestCase):
         self.assertContains(resp, 'Mintis pakeliui pasiklydo, bandykite paspausti F5.')
 
     def test_home_view_when_all_thougts_disabled(self):
-        factories.ThoughtsFactory(enabled=False)
+        factories.ThoughtFactory(enabled=False)
 
         url = reverse('thoughts:home')
         resp = self.client.get(url)
@@ -26,8 +26,8 @@ class HomeTests(TestCase):
         self.assertContains(resp, 'Mintis pakeliui pasiklydo, bandykite paspausti F5.')
 
     def test_home_view_when_all_thougts_deleted(self):
-        th1 = factories.ThoughtsFactory()
-        th2 = factories.ThoughtsFactory()
+        th1 = factories.ThoughtFactory()
+        th2 = factories.ThoughtFactory()
         th1.delete()
         th2.delete()
 
@@ -37,7 +37,7 @@ class HomeTests(TestCase):
         self.assertContains(resp, 'Mintis pakeliui pasiklydo, bandykite paspausti F5.')
 
     def test_home_view_with_thought(self):
-        factories.ThoughtsFactory()
+        factories.ThoughtFactory()
         url = reverse('thoughts:home')
         resp = self.client.get(url)
 
@@ -58,7 +58,7 @@ class CategoryViewTest(TestCase):
         # self.assertContains(resp, 'Tuščia')
 
     def test_category_view_category_with_no_thougths(self):
-        factories.CategoriesFactory(title='C')
+        factories.CategoryFactory(title='C')
 
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         print(url)
@@ -67,9 +67,9 @@ class CategoryViewTest(TestCase):
         self.assertContains(resp, 'Tuščia')
 
     def test_category_view_ordering_then_category_has_no_childs_same_date(self):
-        c = factories.CategoriesFactory(title='C')
-        factories.ThoughtsFactory(thought='w', category=c)
-        factories.ThoughtsFactory(thought='a', category=c)
+        c = factories.CategoryFactory(title='C')
+        factories.ThoughtFactory(thought='w', category=c)
+        factories.ThoughtFactory(thought='a', category=c)
 
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         resp = self.client.get(url)
@@ -78,12 +78,12 @@ class CategoryViewTest(TestCase):
         self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: w')
 
     def test_category_view_ordering_then_category_has_no_childs_different_date(self):
-        c = factories.CategoriesFactory(title='C')
+        c = factories.CategoryFactory(title='C')
         with time_machine.travel('2001-1-1'):
-            factories.ThoughtsFactory(thought='w', category=c)
+            factories.ThoughtFactory(thought='w', category=c)
 
         with time_machine.travel('2000-1-1'):
-            factories.ThoughtsFactory(thought='a', category=c)
+            factories.ThoughtFactory(thought='a', category=c)
 
         url = reverse('thoughts:category', kwargs={'category': 'c'})
         resp = self.client.get(url)
@@ -95,7 +95,7 @@ class CategoryViewTest(TestCase):
 class SearchViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        factories.ThoughtsFactory(thought='Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+        factories.ThoughtFactory(thought='Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
 
     def test_search_view(self):
         view = resolve('/results/')

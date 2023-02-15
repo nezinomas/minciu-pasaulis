@@ -3,7 +3,7 @@ from django.urls import resolve, reverse
 
 from ...core.lib.test_utils import clean_content
 from .. import views
-from ..factories import CategoriesFactory, ThoughtsFactory
+from ..factories import CategoryFactory, ThoughtFactory
 from ..models import Thought
 
 pytestmark = pytest.mark.django_db
@@ -16,7 +16,7 @@ def test_update_func():
 
 
 def test_update_302(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:update', kwargs={'pk': t.pk})
     response = client.get(url)
 
@@ -24,7 +24,7 @@ def test_update_302(client):
 
 
 def test_update_200(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:update', kwargs={'pk': t.pk})
     response = client_logged.get(url)
 
@@ -32,7 +32,7 @@ def test_update_200(client_logged):
 
 
 def test_update_load_form_post_link(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:update', kwargs={'pk': t.pk})
     response = client_logged.get(url)
@@ -42,7 +42,7 @@ def test_update_load_form_post_link(client_logged):
 
 
 def test_update_load_form(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     url = reverse('thoughts:update', kwargs={'pk': t.pk})
     response = client_logged.get(url)
@@ -53,7 +53,7 @@ def test_update_load_form(client_logged):
 
 
 def test_update_author(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     data = {
         'category': t.category.pk,
@@ -72,7 +72,7 @@ def test_update_author(client_logged):
 
 
 def test_update_thought(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
 
     data = {
         'category': t.category.pk,
@@ -91,8 +91,8 @@ def test_update_thought(client_logged):
 
 
 def test_update_category(client_logged):
-    c = CategoriesFactory()
-    t = ThoughtsFactory()
+    c = CategoryFactory()
+    t = ThoughtFactory()
 
     data = {
         'category': c.pk,

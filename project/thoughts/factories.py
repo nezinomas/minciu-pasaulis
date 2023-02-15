@@ -18,7 +18,7 @@ class UserFactory(DjangoModelFactory):
     password = make_password('123')
 
 
-class CategoriesFactory(DjangoModelFactory):
+class CategoryFactory(DjangoModelFactory):
 
     class Meta:
         model = models.Category
@@ -26,10 +26,10 @@ class CategoriesFactory(DjangoModelFactory):
     title = Sequence(lambda n: f'Category{n}')
 
 
-class ThoughtsFactory(DjangoModelFactory):
+class ThoughtFactory(DjangoModelFactory):
     class Meta:
         model = models.Thought
 
     author = 'Author'
     thought = 'Thought'
-    category = SubFactory(CategoriesFactory)
+    category = SubFactory(CategoryFactory)

@@ -3,7 +3,7 @@ from django.urls import resolve, reverse
 
 from ...core.lib.test_utils import clean_content
 from .. import views
-from ..factories import ThoughtsFactory
+from ..factories import ThoughtFactory
 
 pytestmark = pytest.mark.django_db
 
@@ -22,7 +22,7 @@ def test_detail_404(client):
 
 
 def test_detail_200(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client.get(url)
 
@@ -30,7 +30,7 @@ def test_detail_200(client):
 
 
 def test_detail_content(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client.get(url)
     content = clean_content(response.content)
@@ -40,7 +40,7 @@ def test_detail_content(client):
 
 
 def test_detail_content_no_crud_buttons(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client.get(url)
     content = clean_content(response.content)
@@ -49,7 +49,7 @@ def test_detail_content_no_crud_buttons(client):
 
 
 def test_detail_content_row_id(client):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client.get(url)
     content = clean_content(response.content)
@@ -58,7 +58,7 @@ def test_detail_content_row_id(client):
 
 
 def test_detail_content_edit_button(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client_logged.get(url)
     content = clean_content(response.content)
@@ -68,7 +68,7 @@ def test_detail_content_edit_button(client_logged):
 
 
 def test_detail_content_delete_button(client_logged):
-    t = ThoughtsFactory()
+    t = ThoughtFactory()
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client_logged.get(url)
     content = clean_content(response.content)
