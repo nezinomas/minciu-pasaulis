@@ -29,6 +29,16 @@ def test_create_200(client_logged):
     assert response.status_code == 200
 
 
+def test_create_load_form_post_link(client_logged):
+    t = ThoughtsFactory()
+
+    url = reverse('thoughts:create')
+    response = client_logged.get(url)
+    form = clean_content(response.content)
+
+    assert f'hx-post="{url}"' in form
+
+
 def test_create_load_form(client_logged):
     url = reverse('thoughts:create')
     response = client_logged.get(url)
