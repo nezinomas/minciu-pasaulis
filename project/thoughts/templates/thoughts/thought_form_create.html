@@ -1,6 +1,6 @@
 {% load static %}
 
-<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{{ view.url }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
+<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{% url 'thoughts:create' %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
     {% csrf_token %}
     <div class="modal-header">
         <h5 class="modal-title">Pridėti mintį</h5>
