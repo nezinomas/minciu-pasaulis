@@ -22,7 +22,7 @@ class HomeView(DetailViewMixin):
 
 class ListView(ListViewMixin):
     model = Thought
-    template_name = 'thoughts/list.html'
+    template_name = 'thoughts/thought_list.html'
     paginate_by = 50
 
     def get_queryset(self):
@@ -32,7 +32,7 @@ class ListView(ListViewMixin):
 
 class SearchView(ListViewMixin):
     model = Thought
-    template_name = 'thoughts/list.html'
+    template_name = 'thoughts/thought_list.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
