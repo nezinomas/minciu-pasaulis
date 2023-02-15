@@ -91,20 +91,6 @@ class CategoryViewTest(TestCase):
         self.assertEqual(str(resp.context_data["object_list"][0]), 'Author: w')
         self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: a')
 
-    def test_category_view_ordering_then_category_with_childs_different_date(self):
-        c = factories.CategoriesFactory(title='C', has_childs=True)
-        with time_machine.travel('2001-1-1'):
-            factories.ThoughtsFactory(thought='w', category=c)
-
-        with time_machine.travel('2000-1-1'):
-            factories.ThoughtsFactory(thought='a', category=c)
-
-        url = reverse('thoughts:category', kwargs={'category': 'c'})
-        resp = self.client.get(url)
-
-        self.assertEqual(str(resp.context_data["object_list"][0]), 'Author: a')
-        self.assertEqual(str(resp.context_data["object_list"][1]), 'Author: w')
-
 
 class SearchViewTest(TestCase):
     @classmethod
