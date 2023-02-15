@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 
 from ..core.mixins.views import (CreateViewMixin, DeleteViewMixin,
                                  DetailViewMixin, ListViewMixin,
-                                 TemplateViewMixin, UpdateViewMixin)
+                                 UpdateViewMixin)
 from ..core.utils import random
 from .forms import ThoughtForm
 from .models import Category, Thought
@@ -27,11 +27,7 @@ class ListView(ListViewMixin):
 
     def get_queryset(self):
         cid = get_object_or_404(Category, slug=self.kwargs.get('category'))
-        if cid.has_childs:
-            ordering = ('first_letter', '-date')
-        else:
-            ordering = ('-date', 'first_letter')
-        return Thought.objects.filter(category_id=cid.pk, enabled=True).order_by(*ordering)
+        return Thought.objects.filter(category_id=cid.pk, enabled=True).order_by('-date', 'first_letter')
 
 
 class SearchView(ListViewMixin):
