@@ -23,6 +23,7 @@ class HomeView(DetailViewMixin):
 class ListView(ListViewMixin):
     model = Thought
     paginate_by = 50
+    category = None
 
     def get_template_names(self):
         if self.request.htmx:
@@ -31,6 +32,7 @@ class ListView(ListViewMixin):
 
     def get_queryset(self):
         cid = get_object_or_404(Category, slug=self.kwargs.get('category'))
+        self.category = cid.title
         return Thought.objects.filter(category_id=cid.pk, enabled=True).order_by('-date', 'first_letter')
 
     def url(self):
