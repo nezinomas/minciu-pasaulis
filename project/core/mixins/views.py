@@ -40,8 +40,7 @@ class CreateUpdateMixin:
     def form_valid(self, form, **kwargs):
         response = super().form_valid(form)
 
-        if self.hx_trigger_django:
-            response.status_code = 204
+        response.status_code = 204
 
         trigger_client_event(response=response, name=self.hx_trigger_django, params={})
 

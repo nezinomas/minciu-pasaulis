@@ -1,6 +1,6 @@
 {% load slippers %}
 
-<div id="row-id-{{object.pk}}" class="row py-3 my-3">
+<div id="row-id-{{object.pk}}" class="row py-3 my-3" hx-get="{% url 'thoughts:detail' object.pk %}" hx-trigger="reload-{{object.pk}} from:body" hx-target="this" hx-swap="outerHTML">
     <div class="col">
         {{ object.thought|safe }} {% if object.author %} - <em>{{ object.author|safe }}</em>{% endif %}
     {% if request.user.is_authenticated %}
