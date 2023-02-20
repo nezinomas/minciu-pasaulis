@@ -19,7 +19,7 @@ htmx.on("htmx:beforeSwap", (e) => {
 
         if(subbmiter == '_delete' && pk) {
             var row = document.getElementById(`row-id-${pk}`);
-            row.parentNode.remo .removeChild(row);
+            row.parentNode.removeChild(row);
         }
 
         if (subbmiter == '_close' || subbmiter == '_delete') {
