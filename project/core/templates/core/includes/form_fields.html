@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+
+{% include 'core/includes/form_errors.html' %}
+
+{% for field in form %}
+{% if not field.is_hidden %}
+<div class="row">
+    <div class="col-2">{{ field.label_tag }}</div>
+    <div class="col-10">{{ field|as_crispy_field }}</div>
+</div>
+{% endif %}
+{% endfor %}

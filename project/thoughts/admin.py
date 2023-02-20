@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Categories, Thoughts
+from .models import Category, Thought
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -11,5 +11,5 @@ class ThoughtsAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Categories, CategoriesAdmin)
-admin.site.register(Thoughts, ThoughtsAdmin)
+admin.site.register(Category, CategoriesAdmin)
+admin.site.register(Thought, ThoughtsAdmin)

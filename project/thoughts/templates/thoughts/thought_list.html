@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load category_list %}
+
+{% block content %}
+
+{% category_list all_categories border_position='bottom' %}
+
+{% include 'thoughts/includes/partial_thought_list.html' %}
+
+{% include "pagination.html" %}
+{% category_list all_categories border_position='top' %}
+
+{% endblock content %}
+
+
+{% block top_nav %}
+<a href="{% url 'thoughts:home' %}">Pradžia</a>  {{view.category}}
+{% endblock top_nav %}

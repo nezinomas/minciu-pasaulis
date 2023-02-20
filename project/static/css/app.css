@@ -1,5 +1,18 @@
+:root {
+  --bs-body-font-size: 1rem;
+  --font-size-xs: .7rem;
+  --font-size-sm: .8rem;
+}
+
 a {
   text-decoration: none;
+}
+
+label,
+.invalid-feedback,
+.form-control,
+.form-control-sm {
+  font-size: var(--font-size-sm);
 }
 
 .index-font {
@@ -24,11 +37,24 @@ a {
 }
 
 .btn-sm {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   padding: .2rem .3rem;
 }
 
 .page-link {
   padding-left: 0.85rem;
   padding-right: 0.85rem;
+}
+
+.btn-xs {
+  font-size: var(--font-size-xs);
+  padding-top: .01rem;
+  padding-bottom: .01rem;
+  margin-top: 0!important;
+  margin-bottom: 0!important;
+}
+
+.modal-dialog {
+  max-width: 80% !important;
+  margin: auto;
 }

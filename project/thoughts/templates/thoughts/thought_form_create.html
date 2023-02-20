@@ -1,0 +1,20 @@
+{% load static %}
+
+<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{% url 'thoughts:create' %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">Pridėti mintį</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        {% include 'core/includes/form_fields.html' %}
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" id="_new" class="btn btn-sm btn-primary">Insert</button>
+        <button type="submit" id="_close" class="btn btn-sm btn-primary">Insert and Close</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+</form>
+
+<script type="text/javascript" src="{% static 'js/form_scripts.js' %}"></script>

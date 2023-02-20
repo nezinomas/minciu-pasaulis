@@ -9,6 +9,5 @@ def get_random(model):
 
     while True:
         pk = random.randint(1, max_id)
-        obj = model.objects.filter(enabled=True, pk=pk).first()
-        if obj:
+        if obj := model.objects.filter(enabled=True, pk=pk).first():
             return obj

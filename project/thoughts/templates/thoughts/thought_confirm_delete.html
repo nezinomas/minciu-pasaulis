@@ -1,0 +1,19 @@
+{% load static %}
+
+<form method="POST" class="modal-content form" novalidate autocomplete="off" tabindex="-1" hx-post="{% url 'thoughts:delete' object.pk %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' data-hx-trigger-form="{{hx_trigger_form}}">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">Trinti mintį</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <p class="py-0 my-4"> Ar tikrai nori ištrinti: <strong>{{object}}</strong>? </p>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" id="_delete" data-pk="{{object.pk}}" class="btn btn-sm btn-danger" autofocus> Delete </button>
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+</form>
+
+<script type="text/javascript" src="{% static 'js/form_scripts.js' %}"></script>

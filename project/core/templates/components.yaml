@@ -1,0 +1,3 @@
+components:
+    update_button: "core/includes/update_button.html"
+    delete_button: "core/includes/delete_button.html"
