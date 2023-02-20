@@ -1,0 +1,11 @@
+<div hx-get="{{ view.url }}" hx-trigger="reload from:body" hx-target="this">
+    {% for object in object_list %}
+    {% include 'thoughts/thought_detail.html' %}
+    {% empty%}
+        <div class="row">
+            <div class="col text-center mx-auto py-5 my-5">
+                Tuščia
+            </div>
+        </div>
+    {% endfor %}
+</div>
