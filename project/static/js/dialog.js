@@ -16,15 +16,17 @@ htmx.on("htmx:beforeSwap", (e) => {
     if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
         var subbmiter = e.detail.requestConfig.triggeringEvent.submitter.id;
         pk = $("#_delete").attr("data-pk");
+
         if(subbmiter == '_delete' && pk) {
             var row = document.getElementById(`row-id-${pk}`);
-            row.parentNode.removeChild(row);
+            row.parentNode.remo .removeChild(row);
         }
-        if(subbmiter == '_update' && pk) {
-            var row = document.getElementById(`row-id-${pk}`);
 
+        if (subbmiter == '_close' || subbmiter == '_delete') {
+            $('#modal').modal('hide');
+            $('#modal form')[0].reset();
         }
-        $('#modal').modal('hide');
+
         e.detail.shouldSwap = false;
     }
 })

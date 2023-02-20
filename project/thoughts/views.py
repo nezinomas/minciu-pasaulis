@@ -22,12 +22,19 @@ class HomeView(DetailViewMixin):
 
 class ListView(ListViewMixin):
     model = Thought
-    template_name = 'thoughts/thought_list.html'
     paginate_by = 50
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return 'thoughts/includes/partial_thought_list.html'
+        return 'thoughts/thought_list.html'
 
     def get_queryset(self):
         cid = get_object_or_404(Category, slug=self.kwargs.get('category'))
         return Thought.objects.filter(category_id=cid.pk, enabled=True).order_by('-date', 'first_letter')
+
+    def url(self):
+        return reverse_lazy("thoughts:category", kwargs={"category": self.kwargs["category"]})
 
 
 class SearchView(ListViewMixin):
@@ -59,6 +66,7 @@ class CreateView(CreateViewMixin):
     model = Thought
     form_class = ThoughtForm
     template_name = 'thoughts/thought_form_create.html'
+    hx_trigger_django = 'reload'
 
 
 class UpdateView(UpdateViewMixin):

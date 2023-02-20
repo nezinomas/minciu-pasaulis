@@ -1,16 +1,15 @@
 {% load slippers %}
 
-
-    <div class="row py-3 my-3">
-        <div id="row-id-{{object.pk}}" class="col">
-            {{ object.thought|safe }} {% if object.author %} - <em>{{ object.author|safe }}</em>{% endif %}
-        {% if request.user.is_authenticated %}
-        <div>
-            {% url 'thoughts:update' object.pk as url_update%}
-            {% url 'thoughts:delete' object.pk as url_delete%}
-            {% update_button url=url_update %}
-            {% delete_button url=url_delete %}
-        </div>
-        {% endif %}
-        </div>
+<div id="row-id-{{object.pk}}" class="row py-3 my-3">
+    <div class="col">
+        {{ object.thought|safe }} {% if object.author %} - <em>{{ object.author|safe }}</em>{% endif %}
+    {% if request.user.is_authenticated %}
+    <div>
+        {% url 'thoughts:update' object.pk as url_update%}
+        {% url 'thoughts:delete' object.pk as url_delete%}
+        {% update_button url=url_update %}
+        {% delete_button url=url_delete %}
     </div>
+    {% endif %}
+    </div>
+</div>
