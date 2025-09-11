@@ -3,7 +3,10 @@ __pycache__/
 *.py[cod]
 .env
 .db
+
 .python-version
+.conf
+
 # my folders
 media/
 .idea/
