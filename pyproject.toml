@@ -1,7 +1,15 @@
 [project]
-name = "Minčių pasaulis"
+name = "Minciu-pasaulis"
 version = "0.1.0"
-description = "Minčių pasaulis"
+description = "Minciu pasaulis"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "crispy-bootstrap5>=2025.6",
+    "django>=5.2.6",
+    "django-crispy-forms>=2.4",
+    "django-htmx>=1.24.0",
+    "django-vanilla-views>=3.0.0",
+    "mysqlclient>=2.2.7",
+    "slippers>=0.6.2",
+]
