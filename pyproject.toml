@@ -1,0 +1,7 @@
+[project]
+name = "Minčių pasaulis"
+version = "0.1.0"
+description = "Minčių pasaulis"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
