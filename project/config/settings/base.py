@@ -1,26 +1,29 @@
 import os
-
-import environ
-
+import tomllib as toml
+from pathlib import Path
 
 # ================   PATH CONFIGURATION
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE_ROOT = os.path.dirname(BASE_DIR)
-PROJECT_ROOT = os.path.dirname(SITE_ROOT)
+BASE_DIR = Path(__file__).absolute()
+PROJECT_ROOT = BASE_DIR.parent.parent.parent.parent
+SITE_ROOT = BASE_DIR.parent.parent.parent
 
-# Take environment variables from .env file
-ENV = environ.Env()
-environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
+# Take environment variables from .conf file
+with open(PROJECT_ROOT / ".conf", "rb") as f:
+    toml = toml.load(f)
+
+    ENV = toml["django"]
+    DB = toml["database"]
+
 
 
 # ================   MEDIA CONFIGURATION
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media/')
+MEDIA_ROOT = Path(PROJECT_ROOT) / 'media'
 MEDIA_URL = "/media/"
 
 
 # ================   STATIC FILE CONFIGURATION
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+STATIC_ROOT = Path(SITE_ROOT) / 'static'
 
 
 # ================   DEBUG CONFIGURATION
@@ -29,22 +32,15 @@ TEMPLATE_DEBUG = DEBUG
 
 
 # ================   SECRET CONFIGURATION
-SECRET_KEY = ENV('SECRET_KEY')
+SECRET_KEY = ENV["SECRET_KEY"]
 
 
 # ================   project CONFIGURATION
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # ================   DATABASE CONFIGURATION
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': os.path.join(PROJECT_ROOT, '.db'),
-        },
-    }
-}
+DATABASES = {"default": DB}
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
