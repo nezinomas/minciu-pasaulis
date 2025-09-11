@@ -279,12 +279,8 @@ dev = [
     { name = "pytest-randomly" },
     { name = "pytest-sugar" },
     { name = "pytest-xdist" },
-    { name = "time-machine" },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "ruff" },
+    { name = "time-machine" },
 ]
 
 [package.metadata]
@@ -312,13 +308,11 @@ requires-dist = [
     { name = "pytest-randomly", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "pytest-sugar", marker = "extra == 'dev'", specifier = ">=1.1.1" },
     { name = "pytest-xdist", marker = "extra == 'dev'", specifier = ">=3.8.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.13.0" },
     { name = "slippers", specifier = ">=0.6.2" },
     { name = "time-machine", marker = "extra == 'dev'", specifier = ">=2.19.0" },
 ]
 provides-extras = ["dev"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.13.0" }]
 
 [[package]]
 name = "mock"
