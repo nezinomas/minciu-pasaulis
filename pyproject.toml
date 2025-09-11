@@ -1,0 +1,46 @@
+[project]
+name = "Minciu-pasaulis"
+version = "0.1.0"
+description = "Minciu pasaulis"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "crispy-bootstrap5>=2025.6",
+    "django>=5.2.6",
+    "django-crispy-forms>=2.4",
+    "django-htmx>=1.24.0",
+    "django-vanilla-views>=3.0.0",
+    "mysqlclient>=2.2.7",
+    "slippers>=0.6.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "django-debug-toolbar>=6.0.0",
+    "django-test-without-migrations>=0.6",
+    "factory-boy>=3.3.3",
+    "mock>=5.2.0",
+    "pytest>=8.4.2",
+    "pytest-clarity>=1.0.1",
+    "pytest-cov>=7.0.0",
+    "pytest-diff>=0.1.14",
+    "pytest-django>=4.11.1",
+    "pytest-factoryboy>=2.8.1",
+    "pytest-forked>=1.6.0",
+    "pytest-icdiff>=0.9",
+    "pytest-mock>=3.15.0",
+    "pytest-raises>=0.11",
+    "pytest-randomly>=4.0.0",
+    "pytest-sugar>=1.1.1",
+    "pytest-xdist>=3.8.0",
+    "time-machine>=2.19.0",
+    "ruff>=0.13.0",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "N",
+    "R",
+    "I",
+]

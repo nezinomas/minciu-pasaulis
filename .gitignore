@@ -4,6 +4,9 @@ __pycache__/
 .env
 .db
 
+.python-version
+.conf
+
 # my folders
 media/
 .idea/
