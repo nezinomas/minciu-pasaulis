@@ -36,6 +36,9 @@ dev = [
     "time-machine>=2.19.0",
     "ruff>=0.13.0",
 ]
+production = [
+    "gunicorn>=23.0.0",
+]
 
 [tool.ruff.lint]
 select = [
