@@ -36,6 +36,9 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
+    'formatters': {
+        'timestamped': {'format': '%(asctime)s %(levelname)s %(name)s: %(message)s'}
+    },
     'handlers': {
         # Include the default Django email handler for errors
         # This is what you'd get without configuring logging at all.
@@ -50,6 +53,7 @@ LOGGING = {
         'logfile': {
             'class': 'logging.handlers.WatchedFileHandler',
             'filename': ENV["LOG_FILE"],
+            'formatter': 'timestamped',
         },
     },
     'loggers': {
