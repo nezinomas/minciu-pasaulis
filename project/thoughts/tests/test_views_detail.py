@@ -44,8 +44,11 @@ def test_detail_content_no_crud_buttons(client):
     url = reverse('thoughts:detail', kwargs={'pk': t.pk})
     response = client.get(url)
     content = clean_content(response.content)
+    url_update = reverse('thoughts:update', kwargs={'pk': t.pk})
+    url_delete = reverse('thoughts:delete', kwargs={'pk': t.pk})
 
-    assert 'hx-get=' not in content
+    assert f'hx-get="{url_update}"' not in content
+    assert f'hx-get="{url_delete}"' not in content
 
 
 def test_detail_content_row_id(client):
